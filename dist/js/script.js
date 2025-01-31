@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Initial render
+    initializeRows();
 });
 
 // side bar menu toggle
@@ -241,3 +244,109 @@ function generateRandomData(n) {
     return data
 }
 // end: Chart
+
+// data table js  start
+let currentPage = 1;
+let rowsPerPage = localStorage.getItem('rowsPerPage') ? parseInt(localStorage.getItem('rowsPerPage'), 10) : 25;
+let allRows = [];  // Store all rows for pagination
+let filteredRows = []; // Store filtered rows
+
+// Function to render the table
+function renderTable() {
+    const rows = filteredRows.length > 0 ? filteredRows : allRows;
+    const totalRows = rows.length;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = Math.min(startIndex + rowsPerPage, totalRows);
+
+    // Hide all rows initially
+    allRows.forEach(row => row.style.display = 'none');
+
+    // Show only the rows for the current page
+    for (let i = startIndex; i < endIndex; i++) {
+        rows[i].style.display = '';
+    }
+
+    // Show "No results found" message and hide table if no rows match
+    document.getElementById('noResults').style.display = filteredRows.length === 0 ? 'block' : 'none';
+    document.getElementById('dataTable').style.display = filteredRows.length === 0 ? 'none' : 'table';
+
+    // Update pagination info
+    const totalPages = Math.ceil(totalRows / rowsPerPage);
+    document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage === totalPages;
+}
+
+// Function to initialize rows
+function initializeRows() {
+    allRows = Array.from(document.querySelectorAll('#dataTable .data-row'));
+    filteredRows = allRows; // Initially, no filter, show all rows
+    renderTable();
+}
+
+// Event listener for search
+document.getElementById('searchInput').addEventListener('input', function() {
+    const searchQuery = this.value.toLowerCase();
+
+    // Filter rows based on search input
+    filteredRows = allRows.filter(row => row.textContent.toLowerCase().includes(searchQuery));
+
+    currentPage = 1; // Reset to first page after search
+    renderTable();
+});
+
+// Event listener for "Show per page" dropdown
+document.getElementById('perPage').addEventListener('change', function() {
+    rowsPerPage = parseInt(this.value, 10);
+    localStorage.setItem('rowsPerPage', rowsPerPage);
+    renderTable();
+});
+
+// Set the dropdown to the saved value
+document.getElementById('perPage').value = rowsPerPage;
+
+// Pagination functionality
+document.getElementById('prevPage').addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+    }
+});
+
+document.getElementById('nextPage').addEventListener('click', function() {
+    const totalRows = filteredRows.length > 0 ? filteredRows.length : allRows.length;
+    const totalPages = Math.ceil(totalRows / rowsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+    }
+});
+
+// Print functionality
+document.getElementById('printBtn').addEventListener('click', function() {
+    var printContents = document.querySelector('#dataTable').outerHTML;
+    var originalContents = document.body.innerHTML;
+    var originalTitle = document.title;
+    
+    document.body.innerHTML = "<h1 class='text-center text-2xl mb-4'>" + originalTitle + "</h1><div class='container mx-auto p-6'>" + printContents + "</div>";
+    window.print();
+    
+    // Reload the page after printing to restore original state
+    location.reload();
+});
+
+// Export to Excel functionality
+document.getElementById('exportBtn').addEventListener('click', function() {
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.table_to_sheet(document.getElementById('dataTable'));
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'DataTable.xlsx');
+    
+    // Reload the page after exporting to Excel to restore original state
+    location.reload();
+});
+
+// Initial render
+initializeRows();
+
+// data table js  end
