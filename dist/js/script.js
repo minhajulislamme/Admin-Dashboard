@@ -246,6 +246,8 @@ function generateRandomData(n) {
 // end: Chart
 
 // data table js  start
+
+
 let currentPage = 1;
 let rowsPerPage = localStorage.getItem('rowsPerPage') ? parseInt(localStorage.getItem('rowsPerPage'), 10) : 25;
 let allRows = [];  // Store all rows for pagination
@@ -327,8 +329,14 @@ document.getElementById('printBtn').addEventListener('click', function() {
     var printContents = document.querySelector('#dataTable').outerHTML;
     var originalContents = document.body.innerHTML;
     var originalTitle = document.title;
+
+    // Check if the device is mobile
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        document.body.innerHTML = "<h1 class='text-center text-2xl mb-4'>" + originalTitle + "</h1><div class='container mx-auto p-6'>" + printContents + "</div>";
+    } else {
+        document.body.innerHTML = originalContents;
+    }
     
-    document.body.innerHTML = "<h1 class='text-center text-2xl mb-4'>" + originalTitle + "</h1><div class='container mx-auto p-6'>" + printContents + "</div>";
     window.print();
     
     // Reload the page after printing to restore original state
@@ -348,5 +356,6 @@ document.getElementById('exportBtn').addEventListener('click', function() {
 
 // Initial render
 initializeRows();
+
 
 // data table js  end
