@@ -352,3 +352,14 @@ document.getElementById('exportBtn').addEventListener('click', function() {
 initializeRows();
 
 // data table js  end
+
+
+// input number validation start 
+function validateNumberInput(event) {
+    const keyCode = event.keyCode || event.which;
+    const keyValue = String.fromCharCode(keyCode);
+    if (!/^\d+$/.test(keyValue) && keyCode !== 8 && keyCode !== 46) {
+      event.preventDefault();
+    }
+  }
+// input number validation end
