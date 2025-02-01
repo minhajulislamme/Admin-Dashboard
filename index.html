@@ -1974,16 +1974,93 @@
                                 <input type="number" placeholder="Phone Number" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 md:col-span-2" onkeypress="validateNumberInput(event)" onpaste="return false"">
                                 <input type="email" placeholder="Email Address" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 md:col-span-2">
                             </div>
+                         </div> 
+                            <!-- shipping Details -->
+                          <div>
+                            <h3 class="text-lg font-medium mb-2">Shipping Details</h3>
+                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                                <input type="text" placeholder="Address" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 md:col-span-3">
+                                <select name="" id="" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500  ">
+                                    <option value="">Select City</option>
+                                    <option value="">Dhaka</option>
+                                    <option value="">Chittograme</option>
+                                    <option value="">Comila</option>
+                                    <option value="">Sylhet</option>
+                                </select>
+                                <input type="text" placeholder="Post Office" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500">
+                                <input type="text" placeholder="Zip Code" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500">
+                            </div>
+                          </div>
+                          <!-- additonal information  -->
+                            <div>
+                                <h3 class="text-lg font-medium mb-2">Additional Information</h3>
+                                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                    <textarea name="" id="" cols="30" rows="5" placeholder="Order Notes" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 md:col-span-2"></textarea>
+                                </div>
+                            </div>
 
-                         </div>   
+                            <!-- payment method  -->
+                            <div>
+                                <h3 class="text-lg font-medium mb-2">Payment Method</h3>
+                               <div class="border border-gray-100 p-2.5 bg-gray-50  rounded-md w-full text-sm">
+                                <label class="flex items-center spacex-2 mb-2">
+                                    <input type="radio" name="payment" class="mr-2" value="cod" checked onclick="togglePaymentMethod()">
+                                    <span>Cash on Delivery</span>
+                                </label>
+                                <label class="flex items-center spacex-2 mb-2">
+                                    <input type="radio" name="payment" class="mr-2" value="mobilebanking" checked onclick="togglePaymentMethod()">
+                                    <span>Mobile banking</span>
+                                </label>
+                                <label class="flex items-center spacex-2 mb-2">
+                                    <input type="radio" name="payment" class="mr-2" value="credit" checked onclick="togglePaymentMethod()">
+                                    <span>Card Payment</span>
+                                </label>
+                               
+                              
+                                <div id="mobilebanking" class="payment-option mt-2 hidden">
+                                    <input type="text" placeholder="Bkash Number" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 mb-2">
+                                    <input type="text" placeholder="Bkash Tran ID" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 mb-2">
+                                   
+                                </div>
+                                <div id="credit" class="payment-option mt-2 hidden">
+                                    <input type="text" placeholder="Card Number" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 mb-2">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                        <input type="text" placeholder="Expiry Date (MM/YY)" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 mb-2">
+                                        <input type="text" placeholder="CVV" class="border border-gray-100 p-2.5 bg-gray-50 outline-none  rounded-md w-full text-sm focus:border-blue-500 mb-2">
+                                    </div>
+                                </div>
+                                <div id="cod" class="payment-option mt-2 ">
+                                    <p class="text-sm text-gray-600">You will pay at the time of delivery.</p>
+                                </div>
+
+                               </div>
+                            </div>
+
+                            <!-- submit button  -->
+                              <!-- Submit Button -->
+                               <div class=" flex justify-start mt-4">
+                                <div>
+                                <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded w-full hover:bg-blue-700">
+                                    Place Order
+                                </button>
+                                </div>
+                            </div>
+                           
                      </form>
                 </div>
 
             </div>  
+        </div>  
+    <!-- footer part -->
+            <div class="py-2 px-6 bg-white flex flex-col items-center shadow-md shadow-black/5 b-0 left-0 sticky bottom-0 z-30">
                
-
-
+                <div class="text-sm text-gray-500 mt-1">&copy; 2023 Tech Ever IT. All rights reserved.|| Design and Develop by ❤️ Minhajul Islam</div>
+            </div>
+            
     </main>
+
+    <!-- footer part -->
+    
     <!-- =========================================================== script js==================================== -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

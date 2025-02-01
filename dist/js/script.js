@@ -363,3 +363,108 @@ function validateNumberInput(event) {
     }
   }
 // input number validation end
+
+
+// form validation start
+function toggleImageUpload() {
+    const selectedOption = document.querySelector('input[name="image-upload"]:checked').value;
+    if (selectedOption === "single") {
+        document.getElementById("single-image-upload").style.display = "block";
+        document.getElementById("multiple-image-upload").style.display = "none";
+    } else {
+        document.getElementById("single-image-upload").style.display = "none";
+        document.getElementById("multiple-image-upload").style.display = "block";
+    }
+}
+
+function togglePaymentMethod() {
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.style.display = 'none';
+    });
+    const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+    document.getElementById(selectedPayment).style.display = 'block';
+}
+
+// Single Image Preview
+function previewSingleImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById("image-preview-single");
+            preview.src = e.target.result;
+            preview.classList.remove("hidden");
+            document.getElementById("upload-text-single").classList.add("hidden");
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Multiple Image Previews with Add, Remove, Replace functionality
+function previewMultipleImages(event) {
+    const files = event.target.files;
+    const previewContainer = document.getElementById("image-previews");
+
+    Array.from(files).forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgContainer = document.createElement("div");
+            imgContainer.classList.add("relative", "w-32", "h-32", "object-cover", "rounded-lg", "mb-2");
+
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.classList.add("w-full", "h-full", "object-cover");
+
+            const removeBtn = document.createElement("button");
+            removeBtn.innerText = "X";
+            removeBtn.classList.add("absolute", "top-0", "right-0", "bg-red-500", "text-white", "rounded-full", "p-1");
+            removeBtn.onclick = function () {
+                imgContainer.remove();
+            };
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(removeBtn);
+
+            previewContainer.appendChild(imgContainer);
+        };
+        reader.readAsDataURL(file);
+    });
+
+    document.getElementById("upload-text-multiple").classList.add("hidden");
+}
+
+// Handle Drag and Drop for Single Image
+function handleDropSingle(event) {
+    event.preventDefault();
+    document.getElementById("drop-area-single").classList.remove("border-blue-500");
+    const files = event.dataTransfer.files;
+    document.getElementById("file-input-single").files = files;
+    previewSingleImage({ target: { files } });
+}
+
+// Handle Drag and Drop for Multiple Images
+function handleDropMultiple(event) {
+    event.preventDefault();
+    document.getElementById("drop-area-multiple").classList.remove("border-blue-500");
+    const files = event.dataTransfer.files;
+    document.getElementById("file-input-multiple").files = files;
+    previewMultipleImages({ target: { files } });
+}
+
+// Handle Drag Over Event
+function handleDragOver(event) {
+    event.preventDefault();
+    event.target.classList.add("border-blue-500");
+}
+
+// Handle Drag Leave Event
+function handleDragLeave(event) {
+    event.target.classList.remove("border-blue-500");
+}
+
+// Initialize default image upload option and payment method
+toggleImageUpload();
+togglePaymentMethod();
+
+
+// form validation end
