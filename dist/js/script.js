@@ -409,11 +409,11 @@ function previewMultipleImages(event) {
         const reader = new FileReader();
         reader.onload = function(e) {
             const imgContainer = document.createElement("div");
-            imgContainer.classList.add("relative", "w-32", "h-32", "object-cover", "rounded-lg", "mb-2");
+            imgContainer.classList.add("relative", "w-20", "h-20", "object-cover", "rounded-lg", "mb-2");
 
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.classList.add("w-32", "h-32","rounded-lg", "object-cover");
+            img.classList.add("w-20", "h-20","rounded-lg", "object-cover");
 
             const removeBtn = document.createElement("button");
             removeBtn.innerText = "X";

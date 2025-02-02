@@ -588,6 +588,9 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
@@ -753,6 +756,9 @@
   .mr-4 {
     margin-right: calc(var(--spacing) * 4);
   }
+  .mb-0 {
+    margin-bottom: calc(var(--spacing) * 0);
+  }
   .mb-0\.5 {
     margin-bottom: calc(var(--spacing) * 0.5);
   }
@@ -885,6 +891,15 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
+  .h-15 {
+    height: calc(var(--spacing) * 15);
+  }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
+  }
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
@@ -912,6 +927,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
+  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
@@ -923,6 +941,15 @@
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
+  }
+  .w-12 {
+    width: calc(var(--spacing) * 12);
+  }
+  .w-15 {
+    width: calc(var(--spacing) * 15);
+  }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
   }
   .w-32 {
     width: calc(var(--spacing) * 32);
@@ -1044,6 +1071,10 @@
   }
   .-translate-x-full {
     --tw-translate-x: -100%;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-1\/2 {
@@ -1385,13 +1416,6 @@
       --tw-space-y-reverse: 1;
     }
   }
-  .space-x-4 {
-    :where(& > :not(:last-child)) {
-      --tw-space-x-reverse: 0;
-      margin-inline-start: calc(calc(var(--spacing) * 4) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-x-reverse)));
-    }
-  }
   .space-x-reverse {
     :where(& > :not(:last-child)) {
       --tw-space-x-reverse: 1;
@@ -1666,6 +1690,9 @@
   .bg-\[var\(--my_variable\)\] {
     background-color: var(--my_variable);
   }
+  .bg-black {
+    background-color: var(--color-black);
+  }
   .bg-black\/50 {
     background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
   }
@@ -1677,6 +1704,9 @@
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
+  }
+  .bg-emerald-500 {
+    background-color: var(--color-emerald-500);
   }
   .bg-emerald-500\/10 {
     background-color: color-mix(in oklab, var(--color-emerald-500) 10%, transparent);
@@ -1698,6 +1728,9 @@
   }
   .bg-red-500\/\[50\%\] {
     background-color: color-mix(in oklab, var(--color-red-500) 50%, transparent);
+  }
+  .bg-rose-500 {
+    background-color: var(--color-rose-500);
   }
   .bg-rose-500\/10 {
     background-color: color-mix(in oklab, var(--color-rose-500) 10%, transparent);
@@ -2291,6 +2324,9 @@
   .shadow-sm {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-black {
+    --tw-shadow-color: var(--color-black);
   }
   .shadow-black\/5 {
     --tw-shadow-color: color-mix(in oklab, var(--color-black) 5%, transparent);
