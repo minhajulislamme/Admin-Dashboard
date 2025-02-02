@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Excel cdn  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./dist/css/style.css">
 </head>
 <body class="text-gray-900 font-inter">
@@ -2084,7 +2085,7 @@
 
             <!-- end form part  -->
 
-            <!-- start chart part  -->
+            <!-- start Addtional  part  -->
 
             <div class="p-6 bg-white items-center shadow-md shadow-black/5 rounded-md border border-gray-100 mb-6">
               <div class="flex justify-between mb-6">
@@ -2141,19 +2142,25 @@
                 </div>
                 <!-- multiple-image-upload  -->
                 <div id="multiple-image-upload" class="mr-4">
-                  <div id="drop-area-multiple" class="border-2 border-dashed border-gray-400 p-6 w-64 h-64 text-center rounded-lg cursor-pointer hover:border-blue-500 relative"   oondragover="handleDragOver(event)" 
+                  <div id="drop-area-multiple" class="border-2 border-dashed border-gray-400 p-6 w-32 h-32 text-center rounded-lg cursor-pointer hover:border-blue-500 relative"   oondragover="handleDragOver(event)" 
                   ondragleave="handleDragLeave(event)" 
                   ondrop="handleDropMultiple(event)"
                   onclick="document.getElementById('file-input-multiple').click()">
-                  <p id="upload-text-single"class="text-gray-600">Drag &Drop image here or click to upload</p>
+                  <p id="upload-text-single"class=" text-xs text-gray-600">Drag &Drop image here or click to upload</p>
                   
                   <input id="file-input-multiple" type="file" class="hidden" accept="image/*" multiple onchange="previewMultipleImages(event)">
                 </div>
                 <div id="image-previews" class="flex flex-wrap  mt-4 rounded-md justify-center lg:justify-start mb-6">
-    <!-- Image previews will be inserted here -->
-</div>
-                </div>
+                  <!-- Image previews will be inserted here -->
+                  </div>
 
+                </div>
+               
+
+              </div>
+              <div>
+                <label for="" class="block text-lg font-medium mb-6 ">Blog Content</label>
+                <textarea id="summernote"></textarea>
               </div>
               </form>
              </div>
@@ -2174,9 +2181,23 @@
     <!-- =========================================================== script js==================================== -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
      <script src="./dist/js/script.js"></script>
      <script>
-        
+         $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Write your blog content here...',
+                tabsize: 2,
+                height: 250,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+        });
       </script>
 </body>
 </html>
