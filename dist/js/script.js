@@ -413,7 +413,7 @@ function previewMultipleImages(event) {
 
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.classList.add("w-full", "h-full", "object-cover");
+            img.classList.add("w-32", "h-32","rounded-lg", "object-cover");
 
             const removeBtn = document.createElement("button");
             removeBtn.innerText = "X";
